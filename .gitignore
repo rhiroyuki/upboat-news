@@ -27,3 +27,5 @@
 /config/master.key
 tmp/
 log/
+master.key
+.env
