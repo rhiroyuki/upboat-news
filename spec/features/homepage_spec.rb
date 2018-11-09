@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'home page' do
+describe 'homepage index' do
   it 'sees its content' do
     visit '/'
 
