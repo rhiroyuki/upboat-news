@@ -15,10 +15,19 @@ RUN apt-get install -y \
       nodejs \
       yarn
 
-ENV BUNDLE_PATH /box
+ENV BUNDLE_PATH=/bundle \
+    BUNDLE_BIN=/bundle/bin \
+    GEM_HOME=/bundle
+ENV PATH="${BUNDLE_BIN}:${PATH}"
 
 RUN mkdir -p /var/www/
 WORKDIR /var/www/
 
 COPY . /var/www/
+
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+
+RUN gem install bundler
+
 RUN bundle install --jobs=4

@@ -5,22 +5,13 @@ volumes:
     driver: local
 
 services:
-  box:
-    image: busybox
-    volumes:
-    - /box
-
   web:
     tty: true
     stdin_open: true
     build: .
-    volumes:
-      - .:/var/www/
-    volumes_from:
-      - box
     ports:
       - 3000:3000
-    command: ./bin/start
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
     depends_on:
       - redis
       - db
